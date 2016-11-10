@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ejemplo02">
+<head>
+	<meta charset="UTF-8">
+	<title>angularjs 02</title>
+	<link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.min.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/angular-material-icons/angular-material-icons.min.js">
+</head>
+<body>
+	<h1>{{"esto es angularjs "+(1+1) | uppercase}}</h1>
+	<md-button class="md-raised md-primary">Primary</md-button>
+	<md-button class="md-icon-button" hide-gt-sm aria-label="Toggle Menu" ng-click="openAside()">
+                <md-icon md-svg-src="md-menu"></md-icon>
+            </md-button>
+	<!--Librerias angujar materail -->
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+	<script src="bower_components/angular-aria/angular-aria.min.js"></script>
+	<script src="bower_components/angular-messages/angular-messages.min.js"></script>
+	<script src="bower_components/angular-material/angular-material.min.js"></script>
+	<script src="bower_components/angular-material-icons/angular-material-icons.min.js"></script>
+	<script>
+		angular.module("ejemplo02",['ngMaterial']);
+	</script>
+</body>
+</html>
