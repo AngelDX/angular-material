@@ -4,14 +4,52 @@
 	<meta charset="UTF-8">
 	<title>angularjs 02</title>
 	<link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.min.css">
-	<link rel="stylesheet" type="text/css" href="bower_components/angular-material-icons/angular-material-icons.min.js">
+	<link rel="stylesheet" type="text/css" href="bower_components/angular-material-icons/angular-material-icons.css">
+	<link rel="stylesheet" href="angeldx.css">
 </head>
 <body>
-	<h1>{{"esto es angularjs "+(1+1) | uppercase}}</h1>
-	<md-button class="md-raised md-primary">Primary</md-button>
-	<md-button class="md-icon-button" hide-gt-sm aria-label="Toggle Menu" ng-click="openAside()">
-                <md-icon md-svg-src="md-menu"></md-icon>
-            </md-button>
+	<header>
+		<md-toolbar>
+	        <div class="md-toolbar-tools">
+	            SiSDomótica
+	            <span flex></span>
+	            <md-button class="md-icon-button" aria-label="Iniciar Sesión">
+	                <ng-md-icon icon="login" style="fill: #abcdef" size="28"></ng-md-icon>
+	                <md-tooltip md-delay="1000" md-autohide="true">Iniciar Sesión</md-tooltip>
+	            </md-button>
+	        </div>
+	    </md-toolbar>
+    </header>
+    <section>
+	    <div class="contenedor">
+	    <md-grid-list
+	        md-cols-xs="1" md-cols-sm="4" md-cols-md="4" md-cols-gt-md="4" md-row-height="2:1"
+	        md-gutter="12px" md-gutter-gt-sm="8px" >
+
+	    	<md-grid-tile class="green" md-rowspan="1" md-colspan="2"  md-colspan-xs="1">
+		      <md-grid-tile-header>
+		        <h3>CONTROL ALARMA</h3>
+		      </md-grid-tile-header>
+		    </md-grid-tile>
+		    <md-grid-tile class="yellow" md-rowspan="3" md-colspan="2"  md-colspan-xs="1">
+		      <md-grid-tile-header>
+		        <h3>DATOS INFORMATIVOS</h3>
+		      </md-grid-tile-header>
+		    </md-grid-tile>
+
+			<md-grid-tile class="purple" md-rowspan="2" md-colspan="2"  md-colspan-xs="1">
+		      <md-grid-tile-header>
+		        <h3>CONTROL LUCES</h3>
+		      </md-grid-tile-header>
+		    </md-grid-tile>
+
+		  </md-grid-list>
+	    </div>
+    </section>
+	<footer>
+	  <p>&copy; Ing. Angel Rosendo Condori Coaquira &middot; <a href="http://juliacasoft.com">Privacy</a> &middot;<a href="#">Terms</a></p>
+	</footer>
+    
 	<!--Librerias angujar materail -->
 	<script src="bower_components/angular/angular.min.js"></script>
 	<script src="bower_components/angular-animate/angular-animate.min.js"></script>
@@ -20,7 +58,7 @@
 	<script src="bower_components/angular-material/angular-material.min.js"></script>
 	<script src="bower_components/angular-material-icons/angular-material-icons.min.js"></script>
 	<script>
-		angular.module("ejemplo02",['ngMaterial']);
+		angular.module("ejemplo02",['ngMaterial','ngMdIcons']);
 	</script>
 </body>
 </html>
