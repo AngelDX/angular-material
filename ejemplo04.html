@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ejemplo02">
+<head>
+	<meta charset="UTF-8">
+	<title>angularjs 02</title>
+	<link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.min.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/angular-material-icons/angular-material-icons.css">
+	<link rel="stylesheet" href="angeldx.css">
+</head>
+<body>
+	<header>
+		<md-toolbar>
+	        <div class="md-toolbar-tools">
+	            SiSDomótica
+	            <span flex></span>
+	            <md-button class="md-icon-button" aria-label="Iniciar Sesión">
+	                <ng-md-icon icon="login" style="fill: #abcdef" size="28"></ng-md-icon>
+	                <md-tooltip md-delay="1000" md-autohide="true">Iniciar Sesión</md-tooltip>
+	            </md-button>
+	        </div>
+	    </md-toolbar>
+    </header>
+    <section>
+	    <div class="contenedor" ng-controller="ctrlLuces">
+		    <md-grid-list
+		        md-cols-xs="1" md-cols-sm="1" md-cols-md="4" md-cols-gt-md="4" md-row-height="2:1"
+		        md-gutter="12px" md-gutter-gt-sm="8px" >
+		    	<md-grid-tile class="green" md-rowspan="1" md-colspan="2"  md-colspan-xs="1">
+			      <md-grid-tile-header>
+			        <h3>CONTROL ALARMA</h3>
+			      </md-grid-tile-header>
+				    <md-switch ng-model="data.cb0" aria-label="Switch 2" ng-true-value="'T'" ng-false-value="'F'" class="md-primary" ng-change="alarma(data.cb0)">
+					    Activar/Desactivar Alarma {{ data.cb0 }}
+					</md-switch>
+			    </md-grid-tile>
+			    
+			    <md-grid-tile class="yellow" md-rowspan="3" md-colspan="2"  md-colspan-xs="1">
+			      <md-grid-tile-header>
+			        <h3>DATOS INFORMATIVOS</h3>
+			      </md-grid-tile-header>
+			      {{datos.temperatura}}
+			    </md-grid-tile>
+
+				<md-grid-tile class="purple" md-rowspan="2" md-colspan="2"  md-colspan-xs="1">
+			      <md-grid-tile-header>
+			        <h3>CONTROL LUCES</h3>
+			      </md-grid-tile-header>
+			      <div layout="column">
+					  <div flex layout="row">
+					    <div flex layout="row" md-swipe-up="onSwipeUp()">
+					        <div id="interruptores"> 
+					        	<md-switch class="md-warn" ng-model="data.cb1" aria-label="Switch 1" ng-true-value="'T'" ng-false-value="'F'" ng-change="lampara1(data.cb1)">
+							    Luz Dormitorio {{ data.cb1 }}
+								</md-switch>
+								<md-switch class="md-warn" ng-model="data.cb2" aria-label="Switch 2" ng-true-value="'T'" ng-false-value="'F'" ng-change="lampara2(data.cb2)">
+							    Luz Baño {{ data.cb2 }}
+								</md-switch>
+					        </div>
+					    </div>
+
+					    <md-divider></md-divider>
+					    <div flex layout="row" layout-align="center center"
+					         class="demo-swipe" md-swipe-down="onSwipeDown()">
+					    	<div id="interruptores"> 
+					        	<md-switch class="md-warn" ng-model="data.cb3" aria-label="Switch 1" ng-true-value="'T'" ng-false-value="'F'" ng-change="lampara3(data.cb3)">
+							    Luz Cocina {{ data.cb3 }}
+								</md-switch>
+								<md-switch class="md-warn" ng-model="data.cb4" aria-label="Switch 2" ng-true-value="'T'" ng-false-value="'F'" ng-change="lampara4(data.cb4)">
+							    Luz Sala {{ data.cb4 }}
+								</md-switch>
+					        </div>
+					    </div>
+					  </div>
+					
+					<div flex>
+						<md-slider-container>
+					      <span class="md-body-1">Luz Variable</span>
+					      <md-slider flex ng-model="data.cb5" min="0" max="9" aria-label="blue" aria-controls="green-slider" ng-change="variable(data.cb5)"></md-slider>
+					      {{ data.cb5 }}
+					    </md-slider-container>
+					</div>
+				</div>
+			    </md-grid-tile>
+			</md-grid-list>
+	    </div>
+    </section>
+
+	<footer>
+	  <p>&copy; Ing. Angel Rosendo Condori Coaquira &middot; <a href="http://juliacasoft.com">Privacy</a> &middot;<a href="#">Terms</a></p>
+	</footer>
+    
+	<!--Librerias angujar materail -->
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+	<script src="bower_components/angular-aria/angular-aria.min.js"></script>
+	<script src="bower_components/angular-messages/angular-messages.min.js"></script>
+	<script src="bower_components/angular-material/angular-material.min.js"></script>
+	<script src="bower_components/angular-material-icons/angular-material-icons.min.js"></script>
+	<script>
+		angular.module("ejemplo02",['ngMaterial','ngMdIcons'])
+
+		.controller('ctrlLuces',function($scope,$http,$interval){
+			$scope.lampara1 = function (data) {
+	            $http.get('http://192.168.43.121?LED1='+data);
+	        };
+	        $scope.lampara2 = function (data) {
+	            $http.get('http://192.168.43.121?LED2='+data);
+	        };
+	        $scope.lampara3 = function (data) {
+	            $http.get('http://192.168.43.121?LED3='+data);
+	        };
+	        $scope.lampara4 = function (data) {
+	            $http.get('http://192.168.43.121?LED4='+data);
+	        };
+	        $scope.alarma = function (data) {
+	            $http.get('http://192.168.43.121?ALAR='+data);
+	        };
+	        $scope.variable = function (data) {
+	            $http.get('http://192.168.43.121?VAR1='+data);
+	        };
+
+	        $interval(leerDatos, 1000);
+	        function leerDatos() {
+		    	$http.get('http://192.168.43.121').success(function(data) {
+			    	$scope.datos = data;
+				});
+			};
+		});
+
+		
+	</script>
+</body>
+</html>
